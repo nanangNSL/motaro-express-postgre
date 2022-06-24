@@ -1,7 +1,7 @@
 {
   "name": "motaro",
   "version": "1.0.0",
-  "description": "",
+  "description": "![motaro](https://user-images.githubusercontent.com/45787278/175339721-9b526db2-8d9c-487d-8a95-c23f25ab76f4.svg)\r ## Panduan intalasi\r  ### Kamu harus install depedency ini 📜\r - Express\r - pg\r - body-parser\r - cors\r - dotenv\r - morgan\r - multer\r - eslint\r - nodemon\r ### ini akan terus dikembangkan ! Masih bentuk revisi",
   "main": "app.js",
   "scripts": {
     "kuy": "nodemon app.js"
@@ -12,6 +12,7 @@
   "dependencies": {
     "body-parser": "^1.20.0",
     "cors": "^2.8.5",
+    "crypto-js": "^4.1.1",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "morgan": "^1.10.0",
@@ -20,7 +21,19 @@
   },
   "devDependencies": {
     "eslint": "^8.18.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.3",
+    "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.30.0",
-    "nodemon": "^2.0.16"
-  }
+    "nodemon": "^2.0.18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nanangNSL/motaro-express-postgre.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nanangNSL/motaro-express-postgre/issues"
+  },
+  "homepage": "https://github.com/nanangNSL/motaro-express-postgre#readme"
 }
