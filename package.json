@@ -4,29 +4,32 @@
   "description": "![motaro](https://user-images.githubusercontent.com/45787278/175339721-9b526db2-8d9c-487d-8a95-c23f25ab76f4.svg)\r ## Panduan intalasi\r  ### Kamu harus install depedency ini 📜\r - Express\r - pg\r - body-parser\r - cors\r - dotenv\r - morgan\r - multer\r - eslint\r - nodemon\r ### ini akan terus dikembangkan ! Masih bentuk revisi",
   "main": "app.js",
   "scripts": {
-    "kuy": "nodemon app.js"
+    "start": "nodemon main.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Nanang Komarudin",
+  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.20.0",
     "cors": "^2.8.5",
     "crypto-js": "^4.1.1",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
-    "morgan": "^1.10.0",
+    "glob": "^8.0.3",
+    "joi": "^17.6.0",
     "multer": "^1.4.5-lts.1",
     "pg": "^8.7.3"
   },
   "devDependencies": {
     "eslint": "^8.18.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-n": "^15.2.3",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.30.0",
-    "nodemon": "^2.0.18"
+    "nodemon": "^1.19.4",
+    "prettier-eslint": "^15.0.1"
   },
   "repository": {
     "type": "git",
