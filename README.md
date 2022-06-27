@@ -18,7 +18,7 @@
 - Postman
 - Ext Jest Runner
 
-## Requierment
+## Requirement
 - Flowchart Aplikasi
 - Table (Recipe, User, Comment)
 - CRUD
