@@ -18,7 +18,7 @@ exports.selectById = async (id) => {
 };
 
 exports.update = async (id, data) => {
-  // motaroValidator(data, id);
+  motaroValidator(data, id);
   const post = await commentModel.update(id, data);
   return post;
 };

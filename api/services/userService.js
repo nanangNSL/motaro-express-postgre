@@ -12,6 +12,7 @@ exports.select = async () => {
   return posts;
 };
 
+
 exports.selectById = async (id) => {
   const post = await usersModel.selectById(id);
   return post;

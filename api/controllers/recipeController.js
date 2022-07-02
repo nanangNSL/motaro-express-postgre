@@ -1,10 +1,9 @@
-const recipeService = require('../services/recipeService');
-const { imageUploadRecipe } = require('../middleware/multer');
+const recipeService = require('../services/recipeServices');
 
 exports.insert = async (request, response, next) => {
   try {
-      const firstdata = {...request.body, image : imageUploadRecipe};
-      const data = await recipeService.insert(firstdata);
+    console.log(request.file)
+      const data = await recipeService.insert({...request.body, image: request.file.path});
       response.json({ data });
   } catch (error) {
     next(error);

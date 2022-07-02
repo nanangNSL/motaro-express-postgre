@@ -23,8 +23,13 @@ const Post = schema.object({
   image: schema.string(),
   inggredients: schema.string(),
   video: schema.number(),
-  comment: schema.number(),
+  comment: schema.string(),
   date: schema.string(),
+
+  // schema. for video
+  user_id: schema.number(),
+  title_video: schema.string(),
+  video: schema.string(),
 });
 
 module.exports = (data, require) => validate(Post, data, require);
