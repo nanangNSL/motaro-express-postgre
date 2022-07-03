@@ -12,7 +12,8 @@
 - Dotenv
 - Glob
 - Joi
-- Crypto Js
+- Bcrypt
+- Cookie-parser
 
 ## Tool test
 - Postman
