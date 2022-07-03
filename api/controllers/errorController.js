@@ -28,6 +28,6 @@ exports.notFound = (request, response, next) => {
           message: error.message || 'error',
         },
       });
-      // console.log(error);
+      console.log(error);
     next();
   };

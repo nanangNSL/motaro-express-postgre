@@ -21,10 +21,21 @@ exports.insert = async (data) => {
   return { data };
 };
 
-exports.select = async () => {
-  const row = await db.query(`SELECT * FROM public.users
-    ORDER BY id ASC `);
-  return row.rows;
+exports.register = async (data) => {
+  const row = await db.query(
+    `INSERT INTO users(name, email, phonenumber, password, refresh_token) VALUES ($1, $2, $3, $4, $5)`,
+    [
+      data.name,
+      data.email,
+      data.phonenumber,
+      data.password,
+      data.refresh_token
+    ]
+  );
+  if (row.affectedRows === 0) {
+    return null;
+  }
+  return { data };
 };
 
 exports.selectById = async (id) => {
@@ -47,7 +58,20 @@ exports.update = async (id, data) => {
       id,
     ]
   );
+  if (row.affectedRows === 0) {
+    return null;
+  }
+  return { data };
+};
 
+
+exports.updateToken = async (data) => {
+  const row = await db.query(
+    `UPDATE users SET refresh_token=$1`,
+    [
+      data.refresh_token
+    ]
+  );
   if (row.affectedRows === 0) {
     return null;
   }
