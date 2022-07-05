@@ -12,10 +12,7 @@ exports.select = async () => {
     return row.rows;
 };
 
-exports.selectById = async (id) => {
-    const row = await db.query('SELECT * FROM recipe WHERE recipe_id = $1', [id]);
-    return row.rows;
-  };
+
 
 exports.update = async (id, data) => {
   let date = (new Date()).toISOString().split('T')[0];

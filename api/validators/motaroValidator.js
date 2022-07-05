@@ -13,7 +13,7 @@ const Post = schema.object({
 
   // schema. for comment
   id: schema.number(),
-  user_id: schema.number(),
+  // user_id: schema.number(),
   comment: schema.string(),
 
   // schema. for recipe

@@ -38,11 +38,6 @@ exports.register = async (data) => {
   return { data };
 };
 
-exports.selectById = async (id) => {
-  const row = await db.query("SELECT * FROM users WHERE id = $1", [id]);
-  return row.rows;
-};
-
 exports.update = async (id, data) => {
   const row = await db.query(
     `UPDATE users SET name = $1, image =$2, email = $3,phonenumber = $4, password = $5, my_recipe = $6, save_recipe = $7, like_recipe = $8 WHERE id = $9`,

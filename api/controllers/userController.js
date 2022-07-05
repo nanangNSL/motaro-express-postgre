@@ -17,19 +17,7 @@ exports.insert = async (request, response, next) => {
   }
 };
 
-exports.selectById = async (request, response, next) => {
-  try {
-    const data = await usersService.selectById(request.params.id);
-    console.log(data);
-    if (!data) {
-      next();
-    } else {
-      response.json({ data });
-    }
-  } catch (error) {
-    next(error);
-  }
-};
+
 
 
 exports.update = async (request, response, next) => {

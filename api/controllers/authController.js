@@ -3,6 +3,7 @@ const usersService = require("../services/userService");
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const { request } = require("express");
 
 exports.Register = async (req, res, next) => {
   const { name, email, phonenumber, password, confPassword } = req.body;
@@ -28,7 +29,7 @@ exports.Register = async (req, res, next) => {
 exports.Login = async (request, response, next) => {
   try {
     const { email, password } = request.body;
-    const data = await searchService.searchByEmail(email);
+    const data = await searchService.searchUsersByEmail(email);
     if (data[0].email) {
       const checkPasswrod = bcrypt.compareSync(password, data[0].password);
       if (checkPasswrod) {

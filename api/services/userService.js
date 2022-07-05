@@ -13,23 +13,17 @@ exports.register = async (data) => {
   return post;
 };
 
-
-exports.selectById = async (id) => {
-  const post = await usersModel.selectById(id);
-  return post;
-};
-
 exports.update = async (id, data) => {
   // motaroValidator(data, id);
   const post = await usersModel.update(id, data);
   return post;
 };
+
 exports.updateToken = async (id, data) => {
   // motaroValidator(data, id);
   const post = await usersModel.updateToken(id, data);
   return post;
 };
-
 
 exports.delete = async (id) => {
   motaroValidator({ id }, ['id']);

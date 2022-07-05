@@ -19,14 +19,6 @@ exports.select = async (request, response, next) => {
     }
 };
 
-exports.selectById = async (request, response, next) => {
-  try {
-    const data = await videoService.selectById(request.params.id);
-    if (!data) { next(); } else { response.json({ data }); }
-  } catch (error) {
-    next(error);
-  }
-};
 
 exports.update = async (request, response, next) => {
   try {

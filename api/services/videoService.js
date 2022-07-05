@@ -12,10 +12,7 @@ exports.select = async () => {
   return posts;
 };
 
-exports.selectById = async (id) => {
-  const post = await videoModel.selectById(id);
-  return post;
-};
+
 
 exports.update = async (id, data) => {
   // motaroValidator(data, id);
