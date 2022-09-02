@@ -55,6 +55,8 @@
          <code>npm install</code>
        <li>Settup <code>.env</code></li>
          <code>Fill all secret keys</code>
+          <li>Settup database in doc/motaro psql </li>
+         <code>psql -U postgres -p 5432 -h localhost -d db_name -f motaro.psql</code>
          <li>Run project</li>
          <code>npm start</code>
       </ul>
