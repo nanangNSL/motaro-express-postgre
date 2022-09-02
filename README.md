@@ -2,9 +2,9 @@
 <p align="center">This project is used to support the motaro website from the server side</p>
 <p align="center"><a href="https://github.com/bug-hunter-squad/client/blob/main/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/bug-hunter-squad/backend"> <img alt="GitHub package.json version" src="https://img.shields.io/github/package-json/v/bug-hunter-squad/client?color=277BC0"></a></p>
 <p align="center">
-<a href="https://github.com/bug-hunter-squad/backend/issues/32">Report a Bug • </a>
-<a href="https://github.com/bug-hunter-squad/backend/issues/33">Request a Feature • </a>
-<a href="https://github.com/bug-hunter-squad/backend/issues/34">Ask a Question</a></p>
+<a href="https://github.com/nanangNSL/motaro-express-postgre/issues/1">Report a Bug • </a>
+<a href="https://github.com/nanangNSL/motaro-express-postgre/issues/2">Request a Feature • </a>
+<a href="https://github.com/nanangNSL/motaro-express-postgre/issues/3">Ask a Question</a></p>
 
 
 <details>
