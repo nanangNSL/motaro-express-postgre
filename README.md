@@ -36,7 +36,6 @@
    <li>Multer</li>
    <li>JWT token</li>
    <li>Multer</li>
-  <li>Midtrans (gateway payment)</li>
 </ul>
 <h3 id=getting>Getting started</h3>
 <ul>
