@@ -50,7 +50,7 @@
      <h4 id=Installation>Intalation</h4>
       <ul>
         <li>Clone project</li>
-         <code>git clone https://github.com/bug-hunter-squad/backend.git</code>
+         <code>git clone https://github.com/nanangNSL/motaro-express-postgre.git</code>
         <li>Install all dependencies</li>
          <code>npm install</code>
        <li>Settup <code>.env</code></li>
