@@ -2,7 +2,7 @@ const db = require('../utils/db');
 
 exports.insert = async (data) => {
   let date = (new Date()).toISOString().split('T')[0];
-    const row = await db.query(`INSERT INTO recipe(user_id, title, image, inggredients, video, comment, date ) VALUES ($1, $2, $3, $4, $5, $6, $7)`, [data.user_id, data.title, data.image, data.inggredients, data.video, data.comment, date]);
+    const row = await db.query(`INSERT INTO recipe(user_id, title, image, inggredients, date ) VALUES ($1, $2, $3, $4, $5)`, [data.user_id, data.title, data.image, data.inggredients, date]);
     if (row.affectedRows === 0) { return null; }
     return { data };
 };

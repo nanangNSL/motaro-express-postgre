@@ -2,8 +2,9 @@ const recipeService = require('../services/recipeServices');
 
 exports.insert = async (request, response, next) => {
   try {
-    console.log(request.file)
-      const data = await recipeService.insert({...request.body, image: request.file.path});
+    const fileName = request.file.filename;
+    const url = `${request.protocol}://${request.get('host')}/public/user/${fileName}`;
+      const data = await recipeService.insert({...request.body, image: url});
       response.json({ data });
   } catch (error) {
     next(error);

@@ -2,7 +2,9 @@ const videoService = require('../services/videoService');
 
 exports.insert = async (request, response, next) => {
   try {
-      const data = await videoService.insert({...request.body, video: request.file.path});
+    const fileName = request.file.filename;
+    const url = `${request.protocol}://${request.get('host')}/public/video/${fileName}`;
+      const data = await videoService.insert({...request.body, video: url});
       response.json({ data });
   } catch (error) {
     next(error);

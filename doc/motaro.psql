@@ -1,0 +1,484 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 14.4
+-- Dumped by pg_dump version 14.4
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: comment; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.comment (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    comment character varying,
+    create_at timestamp with time zone,
+    recipe_id integer
+);
+
+
+ALTER TABLE public.comment OWNER TO postgres;
+
+--
+-- Name: comment_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.comment_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.comment_id_seq OWNER TO postgres;
+
+--
+-- Name: comment_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.comment_id_seq OWNED BY public.comment.id;
+
+
+--
+-- Name: recipe; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.recipe (
+    recipe_id integer NOT NULL,
+    title character varying,
+    image character varying,
+    inggredients character varying,
+    date timestamp with time zone,
+    user_id integer
+);
+
+
+ALTER TABLE public.recipe OWNER TO postgres;
+
+--
+-- Name: recipe_recipe_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.recipe_recipe_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.recipe_recipe_id_seq OWNER TO postgres;
+
+--
+-- Name: recipe_recipe_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.recipe_recipe_id_seq OWNED BY public.recipe.recipe_id;
+
+
+--
+-- Name: sub_video; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.sub_video (
+    id_video integer NOT NULL,
+    user_id integer,
+    title_video character varying,
+    video character varying,
+    create_at date,
+    recipe_id integer
+);
+
+
+ALTER TABLE public.sub_video OWNER TO postgres;
+
+--
+-- Name: sub_video_id_video_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.sub_video_id_video_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.sub_video_id_video_seq OWNER TO postgres;
+
+--
+-- Name: sub_video_id_video_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.sub_video_id_video_seq OWNED BY public.sub_video.id_video;
+
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.users (
+    id integer NOT NULL,
+    name character varying,
+    image character varying,
+    email character varying,
+    phonenumber character varying,
+    password character varying,
+    my_recipe integer,
+    save_recipe integer,
+    like_recipe integer,
+    refresh_token text
+);
+
+
+ALTER TABLE public.users OWNER TO postgres;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.users_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_id_seq OWNER TO postgres;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+
+
+--
+-- Name: video_recipe; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.video_recipe (
+    id_video integer NOT NULL,
+    user_id integer,
+    video character varying,
+    created_date date,
+    title_video character varying,
+    recipe_id integer
+);
+
+
+ALTER TABLE public.video_recipe OWNER TO postgres;
+
+--
+-- Name: video_recipe_id_video_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.video_recipe_id_video_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.video_recipe_id_video_seq OWNER TO postgres;
+
+--
+-- Name: video_recipe_id_video_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.video_recipe_id_video_seq OWNED BY public.video_recipe.id_video;
+
+
+--
+-- Name: comment id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.comment ALTER COLUMN id SET DEFAULT nextval('public.comment_id_seq'::regclass);
+
+
+--
+-- Name: recipe recipe_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.recipe ALTER COLUMN recipe_id SET DEFAULT nextval('public.recipe_recipe_id_seq'::regclass);
+
+
+--
+-- Name: sub_video id_video; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.sub_video ALTER COLUMN id_video SET DEFAULT nextval('public.sub_video_id_video_seq'::regclass);
+
+
+--
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+
+
+--
+-- Name: video_recipe id_video; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.video_recipe ALTER COLUMN id_video SET DEFAULT nextval('public.video_recipe_id_video_seq'::regclass);
+
+
+--
+-- Data for Name: comment; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.comment (id, user_id, comment, create_at, recipe_id) FROM stdin;
+1	1	masakannya bagus	\N	\N
+3	3	keren banget masakannya	\N	\N
+5	5	Tutorialnya banyak sekali manfa	2022-06-29 00:00:00+07	\N
+6	5	Tutorialnya banyak sekali manfa	2022-07-01 00:00:00+07	\N
+7	10	baguss guyss	2022-07-05 00:00:00+07	\N
+8	2	nyobain aja weh	\N	\N
+9	160	bagusss boss	2022-09-02 00:00:00+07	111
+10	160	combronya enak	2022-09-02 00:00:00+07	140
+11	147	combronya enak	2022-09-02 00:00:00+07	140
+12	147	babat enak	2022-09-02 00:00:00+07	114
+\.
+
+
+--
+-- Data for Name: recipe; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.recipe (recipe_id, title, image, inggredients, date, user_id) FROM stdin;
+104	Bakso Sapi Kenyal Banget	http://localhost:5000/public/1657994214541-bakso-sapi-kenyal-banget-foto-resep-utama.png	00 g daging sapi tanpa urat, cuci bersih\n100 g es batu\n1 butir putih telur\n9 sdm tepung tapioka\n2 sdt garam himalaya\n1 sdt merica bubuk\n1 baking powder\n1 sdm bawang putih, saya pakai 4 siung bawang putih digoreng\n2500 ml air\nBahan Kuah:\n2000 ml air rebusan bakso\n12 siung bawang putih\nSecukupnya garam, gula, dan merica bubuk\n2 batang daun bawang pre, iris dengan jarak 1 cm\n2 batang seledri\nPelengkap:\nSecukupnya mie telur\nSecukupnya sawi hijau\nSecukupnya daun bawang\nBawang merah goreng\nSaus sambal + kecap	2022-07-16 00:00:00+07	\N
+105	Bakso Sapi Kenyal Banget	http://localhost:5000/public/1657994233502-bakso-sapi-kenyal-banget-foto-resep-utama.png	00 g daging sapi tanpa urat, cuci bersih\n100 g es batu\n1 butir putih telur\n9 sdm tepung tapioka\n2 sdt garam himalaya\n1 sdt merica bubuk\n1 baking powder\n1 sdm bawang putih, saya pakai 4 siung bawang putih digoreng\n2500 ml air\nBahan Kuah:\n2000 ml air rebusan bakso\n12 siung bawang putih\nSecukupnya garam, gula, dan merica bubuk\n2 batang daun bawang pre, iris dengan jarak 1 cm\n2 batang seledri\nPelengkap:\nSecukupnya mie telur\nSecukupnya sawi hijau\nSecukupnya daun bawang\nBawang merah goreng\nSaus sambal + kecap	2022-07-16 00:00:00+07	\N
+106	Bakso Sapi Kenyal Banget	http://localhost:5000/public/1657994235331-bakso-sapi-kenyal-banget-foto-resep-utama.png	00 g daging sapi tanpa urat, cuci bersih\n100 g es batu\n1 butir putih telur\n9 sdm tepung tapioka\n2 sdt garam himalaya\n1 sdt merica bubuk\n1 baking powder\n1 sdm bawang putih, saya pakai 4 siung bawang putih digoreng\n2500 ml air\nBahan Kuah:\n2000 ml air rebusan bakso\n12 siung bawang putih\nSecukupnya garam, gula, dan merica bubuk\n2 batang daun bawang pre, iris dengan jarak 1 cm\n2 batang seledri\nPelengkap:\nSecukupnya mie telur\nSecukupnya sawi hijau\nSecukupnya daun bawang\nBawang merah goreng\nSaus sambal + kecap	2022-07-16 00:00:00+07	\N
+161	bakso	http://localhost:5000/public/1658145052655-bakso-sapi-kenyal-banget-foto-resep-utama.png	combro	2022-07-18 00:00:00+07	\N
+162	bakso	http://localhost:5000/public/1658145053834-bakso-sapi-kenyal-banget-foto-resep-utama.png	combro	2022-07-18 00:00:00+07	\N
+163	bakso	http://localhost:5000/public/1658145054947-bakso-sapi-kenyal-banget-foto-resep-utama.png	combro	2022-07-18 00:00:00+07	\N
+164	bakso	http://localhost:5000/public/1658145056123-bakso-sapi-kenyal-banget-foto-resep-utama.png	combro	2022-07-18 00:00:00+07	\N
+165	bakso	http://localhost:5000/public/1658145057177-bakso-sapi-kenyal-banget-foto-resep-utama.png	combro	2022-07-18 00:00:00+07	\N
+169	bakso	http://localhost:5000/public/1658145061652-bakso-sapi-kenyal-banget-foto-resep-utama.png	combro	2022-07-18 00:00:00+07	\N
+170	bakso	http://localhost:5000/public/1658145062807-bakso-sapi-kenyal-banget-foto-resep-utama.png	combro	2022-07-18 00:00:00+07	\N
+171	bakso	http://localhost:5000/public/1658145063964-bakso-sapi-kenyal-banget-foto-resep-utama.png	combro	2022-07-18 00:00:00+07	\N
+172	bakso	http://localhost:5000/public/1658145065123-bakso-sapi-kenyal-banget-foto-resep-utama.png	combro	2022-07-18 00:00:00+07	\N
+173	bakso	http://localhost:5000/public/1658145066304-bakso-sapi-kenyal-banget-foto-resep-utama.png	combro	2022-07-18 00:00:00+07	\N
+174	bakso	http://localhost:5000/public/1658145067587-bakso-sapi-kenyal-banget-foto-resep-utama.png	combro	2022-07-18 00:00:00+07	\N
+107	Bakso Sapi Kenyal Banget	http://localhost:5000/public/1657994236784-bakso-sapi-kenyal-banget-foto-resep-utama.png	00 g daging sapi tanpa urat, cuci bersih\n100 g es batu\n1 butir putih telur\n9 sdm tepung tapioka\n2 sdt garam himalaya\n1 sdt merica bubuk\n1 baking powder\n1 sdm bawang putih, saya pakai 4 siung bawang putih digoreng\n2500 ml air\nBahan Kuah:\n2000 ml air rebusan bakso\n12 siung bawang putih\nSecukupnya garam, gula, dan merica bubuk\n2 batang daun bawang pre, iris dengan jarak 1 cm\n2 batang seledri\nPelengkap:\nSecukupnya mie telur\nSecukupnya sawi hijau\nSecukupnya daun bawang\nBawang merah goreng\nSaus sambal + kecap	2022-07-16 00:00:00+07	\N
+108	Bakso Sapi Kenyal Banget	http://localhost:5000/public/1657994238228-bakso-sapi-kenyal-banget-foto-resep-utama.png	00 g daging sapi tanpa urat, cuci bersih\n100 g es batu\n1 butir putih telur\n9 sdm tepung tapioka\n2 sdt garam himalaya\n1 sdt merica bubuk\n1 baking powder\n1 sdm bawang putih, saya pakai 4 siung bawang putih digoreng\n2500 ml air\nBahan Kuah:\n2000 ml air rebusan bakso\n12 siung bawang putih\nSecukupnya garam, gula, dan merica bubuk\n2 batang daun bawang pre, iris dengan jarak 1 cm\n2 batang seledri\nPelengkap:\nSecukupnya mie telur\nSecukupnya sawi hijau\nSecukupnya daun bawang\nBawang merah goreng\nSaus sambal + kecap	2022-07-16 00:00:00+07	\N
+109	Bakso Sapi Kenyal Banget	http://localhost:5000/public/1657994239748-bakso-sapi-kenyal-banget-foto-resep-utama.png	00 g daging sapi tanpa urat, cuci bersih\n100 g es batu\n1 butir putih telur\n9 sdm tepung tapioka\n2 sdt garam himalaya\n1 sdt merica bubuk\n1 baking powder\n1 sdm bawang putih, saya pakai 4 siung bawang putih digoreng\n2500 ml air\nBahan Kuah:\n2000 ml air rebusan bakso\n12 siung bawang putih\nSecukupnya garam, gula, dan merica bubuk\n2 batang daun bawang pre, iris dengan jarak 1 cm\n2 batang seledri\nPelengkap:\nSecukupnya mie telur\nSecukupnya sawi hijau\nSecukupnya daun bawang\nBawang merah goreng\nSaus sambal + kecap	2022-07-16 00:00:00+07	\N
+110	Bakso Sapi Kenyal Banget	http://localhost:5000/public/1657994241572-bakso-sapi-kenyal-banget-foto-resep-utama.png	00 g daging sapi tanpa urat, cuci bersih\n100 g es batu\n1 butir putih telur\n9 sdm tepung tapioka\n2 sdt garam himalaya\n1 sdt merica bubuk\n1 baking powder\n1 sdm bawang putih, saya pakai 4 siung bawang putih digoreng\n2500 ml air\nBahan Kuah:\n2000 ml air rebusan bakso\n12 siung bawang putih\nSecukupnya garam, gula, dan merica bubuk\n2 batang daun bawang pre, iris dengan jarak 1 cm\n2 batang seledri\nPelengkap:\nSecukupnya mie telur\nSecukupnya sawi hijau\nSecukupnya daun bawang\nBawang merah goreng\nSaus sambal + kecap	2022-07-16 00:00:00+07	\N
+112	soto makasar	http://localhost:5000/public/1658076829006-bakso-sapi-kenyal-banget-foto-resep-utama.png	00 g daging sapi tanpa urat, cuci bersih\n100 g es batu\n1 butir putih telur\n9 sdm tepung tapioka\n2 sdt garam himalaya\n1 sdt merica bubuk\n1 baking powder\n1 sdm bawang putih, saya pakai 4 siung bawang putih digoreng\n2500 ml air\nBahan Kuah:\n2000 ml air rebusan bakso\n12 siung bawang putih\nSecukupnya garam, gula, dan merica bubuk\n2 batang daun bawang pre, iris dengan jarak 1 cm\n2 batang seledri\nPelengkap:\nSecukupnya mie telur\nSecukupnya sawi hijau\nSecukupnya daun bawang\nBawang merah goreng\nSaus sambal + kecap	2022-07-17 00:00:00+07	\N
+113	soto ayam	http://localhost:5000/public/1658076839368-bakso-sapi-kenyal-banget-foto-resep-utama.png	00 g daging sapi tanpa urat, cuci bersih\n100 g es batu\n1 butir putih telur\n9 sdm tepung tapioka\n2 sdt garam himalaya\n1 sdt merica bubuk\n1 baking powder\n1 sdm bawang putih, saya pakai 4 siung bawang putih digoreng\n2500 ml air\nBahan Kuah:\n2000 ml air rebusan bakso\n12 siung bawang putih\nSecukupnya garam, gula, dan merica bubuk\n2 batang daun bawang pre, iris dengan jarak 1 cm\n2 batang seledri\nPelengkap:\nSecukupnya mie telur\nSecukupnya sawi hijau\nSecukupnya daun bawang\nBawang merah goreng\nSaus sambal + kecap	2022-07-17 00:00:00+07	\N
+114	babat	http://localhost:5000/public/1658077916958-bakso-sapi-kenyal-banget-foto-resep-utama.png	00 g daging sapi tanpa urat, cuci bersih\n100 g es batu\n1 butir putih telur\n9 sdm tepung tapioka\n2 sdt garam himalaya\n1 sdt merica bubuk\n1 baking powder\n1 sdm bawang putih, saya pakai 4 siung bawang putih digoreng\n2500 ml air\nBahan Kuah:\n2000 ml air rebusan bakso\n12 siung bawang putih\nSecukupnya garam, gula, dan merica bubuk\n2 batang daun bawang pre, iris dengan jarak 1 cm\n2 batang seledri\nPelengkap:\nSecukupnya mie telur\nSecukupnya sawi hijau\nSecukupnya daun bawang\nBawang merah goreng\nSaus sambal + kecap	2022-07-17 00:00:00+07	\N
+115	ence	http://localhost:5000/public/1658077928933-bakso-sapi-kenyal-banget-foto-resep-utama.png	00 g daging sapi tanpa urat, cuci bersih\n100 g es batu\n1 butir putih telur\n9 sdm tepung tapioka\n2 sdt garam himalaya\n1 sdt merica bubuk\n1 baking powder\n1 sdm bawang putih, saya pakai 4 siung bawang putih digoreng\n2500 ml air\nBahan Kuah:\n2000 ml air rebusan bakso\n12 siung bawang putih\nSecukupnya garam, gula, dan merica bubuk\n2 batang daun bawang pre, iris dengan jarak 1 cm\n2 batang seledri\nPelengkap:\nSecukupnya mie telur\nSecukupnya sawi hijau\nSecukupnya daun bawang\nBawang merah goreng\nSaus sambal + kecap	2022-07-17 00:00:00+07	\N
+116	bakso	http://localhost:5000/public/1658124977997-bakso-sapi-kenyal-banget-foto-resep-utama.png	00 g daging sapi tanpa urat, cuci bersih\n100 g es batu\n1 butir putih telur\n9 sdm tepung tapioka\n2 sdt garam himalaya\n1 sdt merica bubuk\n1 baking powder\n1 sdm bawang putih, saya pakai 4 siung bawang putih digoreng\n2500 ml air\nBahan Kuah:\n2000 ml air rebusan bakso\n12 siung bawang putih\nSecukupnya garam, gula, dan merica bubuk\n2 batang daun bawang pre, iris dengan jarak 1 cm\n2 batang seledri\nPelengkap:\nSecukupnya mie telur\nSecukupnya sawi hijau\nSecukupnya daun bawang\nBawang merah goreng\nSaus sambal + kecap	2022-07-18 00:00:00+07	\N
+117	bakso	http://localhost:5000/public/1658124979430-bakso-sapi-kenyal-banget-foto-resep-utama.png	00 g daging sapi tanpa urat, cuci bersih\n100 g es batu\n1 butir putih telur\n9 sdm tepung tapioka\n2 sdt garam himalaya\n1 sdt merica bubuk\n1 baking powder\n1 sdm bawang putih, saya pakai 4 siung bawang putih digoreng\n2500 ml air\nBahan Kuah:\n2000 ml air rebusan bakso\n12 siung bawang putih\nSecukupnya garam, gula, dan merica bubuk\n2 batang daun bawang pre, iris dengan jarak 1 cm\n2 batang seledri\nPelengkap:\nSecukupnya mie telur\nSecukupnya sawi hijau\nSecukupnya daun bawang\nBawang merah goreng\nSaus sambal + kecap	2022-07-18 00:00:00+07	\N
+118	bakso	http://localhost:5000/public/1658124980467-bakso-sapi-kenyal-banget-foto-resep-utama.png	00 g daging sapi tanpa urat, cuci bersih\n100 g es batu\n1 butir putih telur\n9 sdm tepung tapioka\n2 sdt garam himalaya\n1 sdt merica bubuk\n1 baking powder\n1 sdm bawang putih, saya pakai 4 siung bawang putih digoreng\n2500 ml air\nBahan Kuah:\n2000 ml air rebusan bakso\n12 siung bawang putih\nSecukupnya garam, gula, dan merica bubuk\n2 batang daun bawang pre, iris dengan jarak 1 cm\n2 batang seledri\nPelengkap:\nSecukupnya mie telur\nSecukupnya sawi hijau\nSecukupnya daun bawang\nBawang merah goreng\nSaus sambal + kecap	2022-07-18 00:00:00+07	\N
+166	bakso	http://localhost:5000/public/1658145058283-bakso-sapi-kenyal-banget-foto-resep-utama.png	combro	2022-07-18 00:00:00+07	\N
+119	bakso	http://localhost:5000/public/1658124981438-bakso-sapi-kenyal-banget-foto-resep-utama.png	00 g daging sapi tanpa urat, cuci bersih\n100 g es batu\n1 butir putih telur\n9 sdm tepung tapioka\n2 sdt garam himalaya\n1 sdt merica bubuk\n1 baking powder\n1 sdm bawang putih, saya pakai 4 siung bawang putih digoreng\n2500 ml air\nBahan Kuah:\n2000 ml air rebusan bakso\n12 siung bawang putih\nSecukupnya garam, gula, dan merica bubuk\n2 batang daun bawang pre, iris dengan jarak 1 cm\n2 batang seledri\nPelengkap:\nSecukupnya mie telur\nSecukupnya sawi hijau\nSecukupnya daun bawang\nBawang merah goreng\nSaus sambal + kecap	2022-07-18 00:00:00+07	\N
+120	bakso	http://localhost:5000/public/1658124982267-bakso-sapi-kenyal-banget-foto-resep-utama.png	00 g daging sapi tanpa urat, cuci bersih\n100 g es batu\n1 butir putih telur\n9 sdm tepung tapioka\n2 sdt garam himalaya\n1 sdt merica bubuk\n1 baking powder\n1 sdm bawang putih, saya pakai 4 siung bawang putih digoreng\n2500 ml air\nBahan Kuah:\n2000 ml air rebusan bakso\n12 siung bawang putih\nSecukupnya garam, gula, dan merica bubuk\n2 batang daun bawang pre, iris dengan jarak 1 cm\n2 batang seledri\nPelengkap:\nSecukupnya mie telur\nSecukupnya sawi hijau\nSecukupnya daun bawang\nBawang merah goreng\nSaus sambal + kecap	2022-07-18 00:00:00+07	\N
+121	bakso	http://localhost:5000/public/1658124983154-bakso-sapi-kenyal-banget-foto-resep-utama.png	00 g daging sapi tanpa urat, cuci bersih\n100 g es batu\n1 butir putih telur\n9 sdm tepung tapioka\n2 sdt garam himalaya\n1 sdt merica bubuk\n1 baking powder\n1 sdm bawang putih, saya pakai 4 siung bawang putih digoreng\n2500 ml air\nBahan Kuah:\n2000 ml air rebusan bakso\n12 siung bawang putih\nSecukupnya garam, gula, dan merica bubuk\n2 batang daun bawang pre, iris dengan jarak 1 cm\n2 batang seledri\nPelengkap:\nSecukupnya mie telur\nSecukupnya sawi hijau\nSecukupnya daun bawang\nBawang merah goreng\nSaus sambal + kecap	2022-07-18 00:00:00+07	\N
+122	bakso	http://localhost:5000/public/1658124984046-bakso-sapi-kenyal-banget-foto-resep-utama.png	00 g daging sapi tanpa urat, cuci bersih\n100 g es batu\n1 butir putih telur\n9 sdm tepung tapioka\n2 sdt garam himalaya\n1 sdt merica bubuk\n1 baking powder\n1 sdm bawang putih, saya pakai 4 siung bawang putih digoreng\n2500 ml air\nBahan Kuah:\n2000 ml air rebusan bakso\n12 siung bawang putih\nSecukupnya garam, gula, dan merica bubuk\n2 batang daun bawang pre, iris dengan jarak 1 cm\n2 batang seledri\nPelengkap:\nSecukupnya mie telur\nSecukupnya sawi hijau\nSecukupnya daun bawang\nBawang merah goreng\nSaus sambal + kecap	2022-07-18 00:00:00+07	\N
+123	bakso	http://localhost:5000/public/1658124984949-bakso-sapi-kenyal-banget-foto-resep-utama.png	00 g daging sapi tanpa urat, cuci bersih\n100 g es batu\n1 butir putih telur\n9 sdm tepung tapioka\n2 sdt garam himalaya\n1 sdt merica bubuk\n1 baking powder\n1 sdm bawang putih, saya pakai 4 siung bawang putih digoreng\n2500 ml air\nBahan Kuah:\n2000 ml air rebusan bakso\n12 siung bawang putih\nSecukupnya garam, gula, dan merica bubuk\n2 batang daun bawang pre, iris dengan jarak 1 cm\n2 batang seledri\nPelengkap:\nSecukupnya mie telur\nSecukupnya sawi hijau\nSecukupnya daun bawang\nBawang merah goreng\nSaus sambal + kecap	2022-07-18 00:00:00+07	\N
+124	bakso	http://localhost:5000/public/1658124985821-bakso-sapi-kenyal-banget-foto-resep-utama.png	00 g daging sapi tanpa urat, cuci bersih\n100 g es batu\n1 butir putih telur\n9 sdm tepung tapioka\n2 sdt garam himalaya\n1 sdt merica bubuk\n1 baking powder\n1 sdm bawang putih, saya pakai 4 siung bawang putih digoreng\n2500 ml air\nBahan Kuah:\n2000 ml air rebusan bakso\n12 siung bawang putih\nSecukupnya garam, gula, dan merica bubuk\n2 batang daun bawang pre, iris dengan jarak 1 cm\n2 batang seledri\nPelengkap:\nSecukupnya mie telur\nSecukupnya sawi hijau\nSecukupnya daun bawang\nBawang merah goreng\nSaus sambal + kecap	2022-07-18 00:00:00+07	\N
+125	bakso	http://localhost:5000/public/1658124986833-bakso-sapi-kenyal-banget-foto-resep-utama.png	00 g daging sapi tanpa urat, cuci bersih\n100 g es batu\n1 butir putih telur\n9 sdm tepung tapioka\n2 sdt garam himalaya\n1 sdt merica bubuk\n1 baking powder\n1 sdm bawang putih, saya pakai 4 siung bawang putih digoreng\n2500 ml air\nBahan Kuah:\n2000 ml air rebusan bakso\n12 siung bawang putih\nSecukupnya garam, gula, dan merica bubuk\n2 batang daun bawang pre, iris dengan jarak 1 cm\n2 batang seledri\nPelengkap:\nSecukupnya mie telur\nSecukupnya sawi hijau\nSecukupnya daun bawang\nBawang merah goreng\nSaus sambal + kecap	2022-07-18 00:00:00+07	\N
+126	kepiting	http://localhost:5000/public/1658124994607-bakso-sapi-kenyal-banget-foto-resep-utama.png	00 g daging sapi tanpa urat, cuci bersih\n100 g es batu\n1 butir putih telur\n9 sdm tepung tapioka\n2 sdt garam himalaya\n1 sdt merica bubuk\n1 baking powder\n1 sdm bawang putih, saya pakai 4 siung bawang putih digoreng\n2500 ml air\nBahan Kuah:\n2000 ml air rebusan bakso\n12 siung bawang putih\nSecukupnya garam, gula, dan merica bubuk\n2 batang daun bawang pre, iris dengan jarak 1 cm\n2 batang seledri\nPelengkap:\nSecukupnya mie telur\nSecukupnya sawi hijau\nSecukupnya daun bawang\nBawang merah goreng\nSaus sambal + kecap	2022-07-18 00:00:00+07	\N
+127	kepiting	http://localhost:5000/public/1658124995203-bakso-sapi-kenyal-banget-foto-resep-utama.png	00 g daging sapi tanpa urat, cuci bersih\n100 g es batu\n1 butir putih telur\n9 sdm tepung tapioka\n2 sdt garam himalaya\n1 sdt merica bubuk\n1 baking powder\n1 sdm bawang putih, saya pakai 4 siung bawang putih digoreng\n2500 ml air\nBahan Kuah:\n2000 ml air rebusan bakso\n12 siung bawang putih\nSecukupnya garam, gula, dan merica bubuk\n2 batang daun bawang pre, iris dengan jarak 1 cm\n2 batang seledri\nPelengkap:\nSecukupnya mie telur\nSecukupnya sawi hijau\nSecukupnya daun bawang\nBawang merah goreng\nSaus sambal + kecap	2022-07-18 00:00:00+07	\N
+128	kepiting	http://localhost:5000/public/1658124996225-bakso-sapi-kenyal-banget-foto-resep-utama.png	00 g daging sapi tanpa urat, cuci bersih\n100 g es batu\n1 butir putih telur\n9 sdm tepung tapioka\n2 sdt garam himalaya\n1 sdt merica bubuk\n1 baking powder\n1 sdm bawang putih, saya pakai 4 siung bawang putih digoreng\n2500 ml air\nBahan Kuah:\n2000 ml air rebusan bakso\n12 siung bawang putih\nSecukupnya garam, gula, dan merica bubuk\n2 batang daun bawang pre, iris dengan jarak 1 cm\n2 batang seledri\nPelengkap:\nSecukupnya mie telur\nSecukupnya sawi hijau\nSecukupnya daun bawang\nBawang merah goreng\nSaus sambal + kecap	2022-07-18 00:00:00+07	\N
+129	kepiting	http://localhost:5000/public/1658124997087-bakso-sapi-kenyal-banget-foto-resep-utama.png	00 g daging sapi tanpa urat, cuci bersih\n100 g es batu\n1 butir putih telur\n9 sdm tepung tapioka\n2 sdt garam himalaya\n1 sdt merica bubuk\n1 baking powder\n1 sdm bawang putih, saya pakai 4 siung bawang putih digoreng\n2500 ml air\nBahan Kuah:\n2000 ml air rebusan bakso\n12 siung bawang putih\nSecukupnya garam, gula, dan merica bubuk\n2 batang daun bawang pre, iris dengan jarak 1 cm\n2 batang seledri\nPelengkap:\nSecukupnya mie telur\nSecukupnya sawi hijau\nSecukupnya daun bawang\nBawang merah goreng\nSaus sambal + kecap	2022-07-18 00:00:00+07	\N
+130	kepiting	http://localhost:5000/public/1658124997976-bakso-sapi-kenyal-banget-foto-resep-utama.png	00 g daging sapi tanpa urat, cuci bersih\n100 g es batu\n1 butir putih telur\n9 sdm tepung tapioka\n2 sdt garam himalaya\n1 sdt merica bubuk\n1 baking powder\n1 sdm bawang putih, saya pakai 4 siung bawang putih digoreng\n2500 ml air\nBahan Kuah:\n2000 ml air rebusan bakso\n12 siung bawang putih\nSecukupnya garam, gula, dan merica bubuk\n2 batang daun bawang pre, iris dengan jarak 1 cm\n2 batang seledri\nPelengkap:\nSecukupnya mie telur\nSecukupnya sawi hijau\nSecukupnya daun bawang\nBawang merah goreng\nSaus sambal + kecap	2022-07-18 00:00:00+07	\N
+167	bakso	http://localhost:5000/public/1658145059442-bakso-sapi-kenyal-banget-foto-resep-utama.png	combro	2022-07-18 00:00:00+07	\N
+168	bakso	http://localhost:5000/public/1658145060546-bakso-sapi-kenyal-banget-foto-resep-utama.png	combro	2022-07-18 00:00:00+07	\N
+131	kepiting	http://localhost:5000/public/1658124998870-bakso-sapi-kenyal-banget-foto-resep-utama.png	00 g daging sapi tanpa urat, cuci bersih\n100 g es batu\n1 butir putih telur\n9 sdm tepung tapioka\n2 sdt garam himalaya\n1 sdt merica bubuk\n1 baking powder\n1 sdm bawang putih, saya pakai 4 siung bawang putih digoreng\n2500 ml air\nBahan Kuah:\n2000 ml air rebusan bakso\n12 siung bawang putih\nSecukupnya garam, gula, dan merica bubuk\n2 batang daun bawang pre, iris dengan jarak 1 cm\n2 batang seledri\nPelengkap:\nSecukupnya mie telur\nSecukupnya sawi hijau\nSecukupnya daun bawang\nBawang merah goreng\nSaus sambal + kecap	2022-07-18 00:00:00+07	\N
+132	kepiting	http://localhost:5000/public/1658124999873-bakso-sapi-kenyal-banget-foto-resep-utama.png	00 g daging sapi tanpa urat, cuci bersih\n100 g es batu\n1 butir putih telur\n9 sdm tepung tapioka\n2 sdt garam himalaya\n1 sdt merica bubuk\n1 baking powder\n1 sdm bawang putih, saya pakai 4 siung bawang putih digoreng\n2500 ml air\nBahan Kuah:\n2000 ml air rebusan bakso\n12 siung bawang putih\nSecukupnya garam, gula, dan merica bubuk\n2 batang daun bawang pre, iris dengan jarak 1 cm\n2 batang seledri\nPelengkap:\nSecukupnya mie telur\nSecukupnya sawi hijau\nSecukupnya daun bawang\nBawang merah goreng\nSaus sambal + kecap	2022-07-18 00:00:00+07	\N
+133	kepiting	http://localhost:5000/public/1658125000847-bakso-sapi-kenyal-banget-foto-resep-utama.png	00 g daging sapi tanpa urat, cuci bersih\n100 g es batu\n1 butir putih telur\n9 sdm tepung tapioka\n2 sdt garam himalaya\n1 sdt merica bubuk\n1 baking powder\n1 sdm bawang putih, saya pakai 4 siung bawang putih digoreng\n2500 ml air\nBahan Kuah:\n2000 ml air rebusan bakso\n12 siung bawang putih\nSecukupnya garam, gula, dan merica bubuk\n2 batang daun bawang pre, iris dengan jarak 1 cm\n2 batang seledri\nPelengkap:\nSecukupnya mie telur\nSecukupnya sawi hijau\nSecukupnya daun bawang\nBawang merah goreng\nSaus sambal + kecap	2022-07-18 00:00:00+07	\N
+134	kepiting	http://localhost:5000/public/1658125001780-bakso-sapi-kenyal-banget-foto-resep-utama.png	00 g daging sapi tanpa urat, cuci bersih\n100 g es batu\n1 butir putih telur\n9 sdm tepung tapioka\n2 sdt garam himalaya\n1 sdt merica bubuk\n1 baking powder\n1 sdm bawang putih, saya pakai 4 siung bawang putih digoreng\n2500 ml air\nBahan Kuah:\n2000 ml air rebusan bakso\n12 siung bawang putih\nSecukupnya garam, gula, dan merica bubuk\n2 batang daun bawang pre, iris dengan jarak 1 cm\n2 batang seledri\nPelengkap:\nSecukupnya mie telur\nSecukupnya sawi hijau\nSecukupnya daun bawang\nBawang merah goreng\nSaus sambal + kecap	2022-07-18 00:00:00+07	\N
+135	kepiting	http://localhost:5000/public/1658125002803-bakso-sapi-kenyal-banget-foto-resep-utama.png	00 g daging sapi tanpa urat, cuci bersih\n100 g es batu\n1 butir putih telur\n9 sdm tepung tapioka\n2 sdt garam himalaya\n1 sdt merica bubuk\n1 baking powder\n1 sdm bawang putih, saya pakai 4 siung bawang putih digoreng\n2500 ml air\nBahan Kuah:\n2000 ml air rebusan bakso\n12 siung bawang putih\nSecukupnya garam, gula, dan merica bubuk\n2 batang daun bawang pre, iris dengan jarak 1 cm\n2 batang seledri\nPelengkap:\nSecukupnya mie telur\nSecukupnya sawi hijau\nSecukupnya daun bawang\nBawang merah goreng\nSaus sambal + kecap	2022-07-18 00:00:00+07	\N
+136	kepiting	http://localhost:5000/public/1658125003854-bakso-sapi-kenyal-banget-foto-resep-utama.png	00 g daging sapi tanpa urat, cuci bersih\n100 g es batu\n1 butir putih telur\n9 sdm tepung tapioka\n2 sdt garam himalaya\n1 sdt merica bubuk\n1 baking powder\n1 sdm bawang putih, saya pakai 4 siung bawang putih digoreng\n2500 ml air\nBahan Kuah:\n2000 ml air rebusan bakso\n12 siung bawang putih\nSecukupnya garam, gula, dan merica bubuk\n2 batang daun bawang pre, iris dengan jarak 1 cm\n2 batang seledri\nPelengkap:\nSecukupnya mie telur\nSecukupnya sawi hijau\nSecukupnya daun bawang\nBawang merah goreng\nSaus sambal + kecap	2022-07-18 00:00:00+07	\N
+137	kepiting	http://localhost:5000/public/1658125004971-bakso-sapi-kenyal-banget-foto-resep-utama.png	00 g daging sapi tanpa urat, cuci bersih\n100 g es batu\n1 butir putih telur\n9 sdm tepung tapioka\n2 sdt garam himalaya\n1 sdt merica bubuk\n1 baking powder\n1 sdm bawang putih, saya pakai 4 siung bawang putih digoreng\n2500 ml air\nBahan Kuah:\n2000 ml air rebusan bakso\n12 siung bawang putih\nSecukupnya garam, gula, dan merica bubuk\n2 batang daun bawang pre, iris dengan jarak 1 cm\n2 batang seledri\nPelengkap:\nSecukupnya mie telur\nSecukupnya sawi hijau\nSecukupnya daun bawang\nBawang merah goreng\nSaus sambal + kecap	2022-07-18 00:00:00+07	\N
+138	combro	http://localhost:5000/public/1658127900552-bakso-sapi-kenyal-banget-foto-resep-utama.png	combro	2022-07-18 00:00:00+07	\N
+139	combro	http://localhost:5000/public/1658127901822-bakso-sapi-kenyal-banget-foto-resep-utama.png	combro	2022-07-18 00:00:00+07	\N
+140	combro	http://localhost:5000/public/1658127903098-bakso-sapi-kenyal-banget-foto-resep-utama.png	combro	2022-07-18 00:00:00+07	\N
+141	combro	http://localhost:5000/public/1658127904476-bakso-sapi-kenyal-banget-foto-resep-utama.png	combro	2022-07-18 00:00:00+07	\N
+142	combro	http://localhost:5000/public/1658127905921-bakso-sapi-kenyal-banget-foto-resep-utama.png	combro	2022-07-18 00:00:00+07	\N
+143	combro	http://localhost:5000/public/1658127907199-bakso-sapi-kenyal-banget-foto-resep-utama.png	combro	2022-07-18 00:00:00+07	\N
+144	combro	http://localhost:5000/public/1658127908319-bakso-sapi-kenyal-banget-foto-resep-utama.png	combro	2022-07-18 00:00:00+07	\N
+145	combro	http://localhost:5000/public/1658127909444-bakso-sapi-kenyal-banget-foto-resep-utama.png	combro	2022-07-18 00:00:00+07	\N
+146	combro	http://localhost:5000/public/1658127910591-bakso-sapi-kenyal-banget-foto-resep-utama.png	combro	2022-07-18 00:00:00+07	\N
+147	combro	http://localhost:5000/public/1658127911761-bakso-sapi-kenyal-banget-foto-resep-utama.png	combro	2022-07-18 00:00:00+07	\N
+148	combro	http://localhost:5000/public/1658127913048-bakso-sapi-kenyal-banget-foto-resep-utama.png	combro	2022-07-18 00:00:00+07	\N
+149	combro	http://localhost:5000/public/1658127914526-bakso-sapi-kenyal-banget-foto-resep-utama.png	combro	2022-07-18 00:00:00+07	\N
+150	combro	http://localhost:5000/public/1658127915966-bakso-sapi-kenyal-banget-foto-resep-utama.png	combro	2022-07-18 00:00:00+07	\N
+151	combro	http://localhost:5000/public/1658127917455-bakso-sapi-kenyal-banget-foto-resep-utama.png	combro	2022-07-18 00:00:00+07	\N
+152	combro	http://localhost:5000/public/1658127918609-bakso-sapi-kenyal-banget-foto-resep-utama.png	combro	2022-07-18 00:00:00+07	\N
+153	bakso	http://localhost:5000/public/1658145042301-bakso-sapi-kenyal-banget-foto-resep-utama.png	combro	2022-07-18 00:00:00+07	\N
+154	bakso	http://localhost:5000/public/1658145043791-bakso-sapi-kenyal-banget-foto-resep-utama.png	combro	2022-07-18 00:00:00+07	\N
+155	bakso	http://localhost:5000/public/1658145045541-bakso-sapi-kenyal-banget-foto-resep-utama.png	combro	2022-07-18 00:00:00+07	\N
+156	bakso	http://localhost:5000/public/1658145046724-bakso-sapi-kenyal-banget-foto-resep-utama.png	combro	2022-07-18 00:00:00+07	\N
+157	bakso	http://localhost:5000/public/1658145047858-bakso-sapi-kenyal-banget-foto-resep-utama.png	combro	2022-07-18 00:00:00+07	\N
+158	bakso	http://localhost:5000/public/1658145048974-bakso-sapi-kenyal-banget-foto-resep-utama.png	combro	2022-07-18 00:00:00+07	\N
+159	bakso	http://localhost:5000/public/1658145050336-bakso-sapi-kenyal-banget-foto-resep-utama.png	combro	2022-07-18 00:00:00+07	\N
+160	bakso	http://localhost:5000/public/1658145051529-bakso-sapi-kenyal-banget-foto-resep-utama.png	combro	2022-07-18 00:00:00+07	\N
+175	kentang	http://localhost:8080/public/user/1662102878580-a.jpg	kentang goreng	2022-09-02 00:00:00+07	150
+\.
+
+
+--
+-- Data for Name: sub_video; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.sub_video (id_video, user_id, title_video, video, create_at, recipe_id) FROM stdin;
+3	2	test	C:\\Users\\nanan\\BOOTCAMP\\backend\\motaro-express-postgre\\asset\\video\\1656649761240-video5mb.mp4	2022-07-01	\N
+4	2	1232	C:\\Users\\nanan\\BOOTCAMP\\backend\\motaro-express-postgre\\asset\\video\\1656649768603-video5mb.mp4	2022-07-01	\N
+2	\N	video	C:\\Users\\nanan\\BOOTCAMP\\backend\\motaro-express-postgre\\asset\\video\\1656649988513-video5mb.mp4	2022-07-01	\N
+5	1	step pisang	C:\\Users\\nanan\\BOOTCAMP\\backend\\motaro-express-postgre\\asset\\video\\1656661441542-video5mb.mp4	2022-07-01	\N
+6	150	video 1	http://localhost:8080/public/video/1662103239275-video5mb.mp4	2022-09-02	114
+\.
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.users (id, name, image, email, phonenumber, password, my_recipe, save_recipe, like_recipe, refresh_token) FROM stdin;
+155	Nanang Komarudin	\N	fikrifasdilah@gmail.com	098787657890	$2b$10$srfaFJdb5DIpoJEjab.qcONNfL/Z29Pz2qKnugpFVR8dEVaHIzIY2	\N	\N	\N	\N
+154	Ramdan	\N	fikrifadilah@gmail.com	08121288898	$2b$10$TaW5kxADr7d4o.Il20dR9Oz92fFFry4EGZuhyd8NefdbP7v5aMbDy	\N	\N	\N	eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE1NCwibmFtZSI6IlJhbWRhbiIsImVtYWlsIjoiZmlrcmlmYWRpbGFoQGdtYWlsLmNvbSIsImlhdCI6MTY1OTA3MjgzNCwiZXhwIjoxNjU5MTU5MjM0fQ.AwoBl_H49y-0P6zTi_mwl-i-3s3aUDQAqtlJ01tMgXI
+153	motaro nagasaki	\N	motarojapan@gmail.com	0987898789	$2b$10$Ibe1qv9AU/18G4LgCWnZRO8gNa1s/wIH0YvDNYAP1CUX4kdSMRdjK	\N	\N	\N	eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE1MywibmFtZSI6Im1vdGFybyBuYWdhc2FraSIsImVtYWlsIjoibW90YXJvamFwYW5AZ21haWwuY29tIiwiaWF0IjoxNjU5MDc2MTgxLCJleHAiOjE2NTkxNjI1ODF9.oUv9irKQ1kz3HDwxOkuxSuV9jCd5GCXwI1BXQVaFqBo
+147	motaro	\N	motaro@gmail.com	0812127373097	$2b$10$Ve15CT6R.AMLPmou/WQ65Ovc5KTOkgSRmXxlY90D9EG6OeoI1yUKu	\N	\N	\N	eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE1MSwibmFtZSI6ImhhbWlkIiwiZW1haWwiOiJoYW1pZEBnbWFpbC5jb20iLCJpYXQiOjE2NTgwNTUxNTgsImV4cCI6MTY1ODE0MTU1OH0.t0fsQnTfviHjjvhJ9Zox20WikSxs7tyXtb7_QBYDYII
+150	nanang komarudin	\N	nanangkomarudin@gmail.com	081212737333	$2b$10$Hv8yPJzVc159jE0I.EZtlOX1iuQxGO36g8P7chOAGLVNAKKPEytCS	\N	\N	\N	eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE1MSwibmFtZSI6ImhhbWlkIiwiZW1haWwiOiJoYW1pZEBnbWFpbC5jb20iLCJpYXQiOjE2NTgwNTUxNTgsImV4cCI6MTY1ODE0MTU1OH0.t0fsQnTfviHjjvhJ9Zox20WikSxs7tyXtb7_QBYDYII
+160	Nanang Komarudin	http://localhost:8080/public/user/1662040862703-sizeSmall.jpg	nanangkomarudin2015@gmail.com	081212737047	$2b$10$u1iY8jXEScrdcapCD6Lohu7fHaLVMFWUSykJR0gQfbH9mWdFCm7GW	1	1	1	\N
+151	hamid	\N	hamid@gmail.com	09877777777	$2b$10$tPDW.26wluOyVCvMkJjoSOZCsk3H0S/3BpxlHrLTnPtS8p4q3IsFi	\N	\N	\N	eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjE1MSwibmFtZSI6ImhhbWlkIiwiZW1haWwiOiJoYW1pZEBnbWFpbC5jb20iLCJpYXQiOjE2NTgwNjEwODksImV4cCI6MTY1ODE0NzQ4OX0.otYe14-hbJD9wkLFm7w16cV-ZhCZy4hdDFgRykjZbQM
+152	name update	\N	update@gmail.com	098778989	$2b$10$C2qd3hdcPcXDaNaWg1n7P.T8.8Yo9m9ydg1EUbY9qpoMZ0gedr9Yy	\N	\N	\N	\N
+\.
+
+
+--
+-- Data for Name: video_recipe; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.video_recipe (id_video, user_id, video, created_date, title_video, recipe_id) FROM stdin;
+3	3	Bakwan cici sudirman	2022-06-27	\N	\N
+4	1	C:\\Users\\nanan\\BOOTCAMP\\backend\\motaro-express-postgre\\asset\\video\\1656418293056-videoplayback.mp4	2022-06-28	\N	\N
+5	1	C:\\Users\\nanan\\BOOTCAMP\\backend\\motaro-express-postgre\\asset\\video\\1656521871056-video5mb.mp4	2022-06-29	\N	\N
+6	1	C:\\Users\\nanan\\BOOTCAMP\\backend\\motaro-express-postgre\\asset\\video\\1656521895993-size24mb.mp4	2022-06-29	\N	\N
+7	1	C:\\Users\\nanan\\BOOTCAMP\\backend\\motaro-express-postgre\\asset\\video\\1656522493513-video5mb.mp4	2022-06-29	\N	\N
+\.
+
+
+--
+-- Name: comment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.comment_id_seq', 12, true);
+
+
+--
+-- Name: recipe_recipe_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.recipe_recipe_id_seq', 175, true);
+
+
+--
+-- Name: sub_video_id_video_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.sub_video_id_video_seq', 6, true);
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.users_id_seq', 160, true);
+
+
+--
+-- Name: video_recipe_id_video_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.video_recipe_id_video_seq', 7, true);
+
+
+--
+-- Name: comment comment_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.comment
+    ADD CONSTRAINT comment_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: recipe recipe_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.recipe
+    ADD CONSTRAINT recipe_pkey PRIMARY KEY (recipe_id);
+
+
+--
+-- Name: sub_video sub_video_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.sub_video
+    ADD CONSTRAINT sub_video_pkey PRIMARY KEY (id_video);
+
+
+--
+-- Name: users users_email_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_email_key UNIQUE (email);
+
+
+--
+-- Name: users users_phonenumber_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_phonenumber_key UNIQUE (phonenumber);
+
+
+--
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: video_recipe video_recipe_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.video_recipe
+    ADD CONSTRAINT video_recipe_pkey PRIMARY KEY (id_video);
+
+
+--
+-- PostgreSQL database dump complete
+--
+

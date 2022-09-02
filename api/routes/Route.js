@@ -3,10 +3,13 @@ const comment = require('../controllers/commentController');
 const recipe = require('../controllers/recipeController.js');
 const video = require('../controllers/videoController');
 const  {imageUploadUser, imageUploadRecipe, imageUploadVideos}  = require('../middleware/multer');
-
+const {getData} =require('../controllers/shortUrlpagination')
 
 
 module.exports = (route) => {
+
+
+  route.get('/search', getData)
 
   route.post('/users/insert', imageUploadUser, users.insert);
   route.get('/users/get', users.select);

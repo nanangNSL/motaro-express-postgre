@@ -6,10 +6,11 @@ exports.insert = async (request, response, next) => {
   try {
     const test = request.body.password;
     const hash = bcrypt.hashSync(`${test}`, 10);
-
+    const fileName = request.file.filename;
+    const url = `${request.protocol}://${request.get('host')}/public/user/${fileName}`;
     const data = await usersService.insert({
       ...request.body,
-      image: request.file.path,
+      image: url,
       password: `${hash}`,
     });
     response.json({ data });

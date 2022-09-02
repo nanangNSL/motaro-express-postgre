@@ -22,8 +22,6 @@ const Post = schema.object({
   title: schema.string() ,
   image: schema.string(),
   inggredients: schema.string(),
-  video: schema.number(),
-  comment: schema.string(),
   date: schema.string(),
 
   // schema. for video
