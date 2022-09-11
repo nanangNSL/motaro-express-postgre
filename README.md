@@ -1,6 +1,17 @@
-<h2 align="center">Motaro beginer backend</h2>
+<h2 align="center">Motaro Beginer Backend</h2>
 <p align="center">This project is used to support the motaro website from the server side</p>
-<p align="center"><a href="https://github.com/bug-hunter-squad/client/blob/main/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/bug-hunter-squad/backend"> <img alt="GitHub package.json version" src="https://img.shields.io/github/package-json/v/bug-hunter-squad/client?color=277BC0"></a></p>
+<p align="center"><a href="https://github.com/bug-hunter-squad/client/blob/main/LICENSE">
+<img alt="GitHub license" src="https://img.shields.io/github/license/bug-hunter-squad/backend"> <img alt="GitHub package.json version" src="https://img.shields.io/github/package-json/v/bug-hunter-squad/client?color=277BC0">
+</a></p>
+<p align="center">
+<img alt="GitHub license" src="https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB">
+<img alt="GitHub license" src="https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens">
+<img alt="GitHub license" src="https://img.shields.io/badge/NPM-%23000000.svg?style=for-the-badge&logo=npm&logoColor=white">
+<img alt="GitHub license" src="https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white">
+<img alt="GitHub license" src="https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white">
+<img alt="GitHub license" src="https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white">
+
+</p>
 <p align="center">
 <a href="https://github.com/nanangNSL/motaro-express-postgre/issues/1">Report a Bug • </a>
 <a href="https://github.com/nanangNSL/motaro-express-postgre/issues/2">Request a Feature • </a>
@@ -43,22 +54,22 @@
      <h4 id=Prerequisites>Prerequiresites</h4>
      <ul>
        <li>npm</li>
-       <code>npm install npm@latest -g</code>
+       <pre><code>npm install npm@latest -g</code></pre>
      </ul>
   </li>
   <li>
      <h4 id=Installation>Intalation</h4>
       <ul>
         <li>Clone project</li>
-         <code>git clone https://github.com/nanangNSL/motaro-express-postgre.git</code>
+         <pre><code>git clone https://github.com/nanangNSL/motaro-express-postgre.git</code></pre>
         <li>Install all dependencies</li>
-         <code>npm install</code>
+         <pre><code>npm install</code></pre>
        <li>Settup <code>.env</code></li>
-         <code>Fill all secret keys</code>
+         <pre><code>Fill all secret keys</code></pre>
           <li>Settup database in doc/motaro psql </li>
-         <code>psql -U postgres -p 5432 -h localhost -d db_name -f motaro.psql</code>
+         <pre><code>psql -U postgres -p 5432 -h localhost -d db_name -f motaro.psql</code></pre>
          <li>Run project</li>
-         <code>npm start</code>
+         <pre><code>npm start</code></pre>
       </ul>
    </li>
 </ul>
